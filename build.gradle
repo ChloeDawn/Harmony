@@ -1,0 +1,40 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+buildscript {
+  repositories {
+    jcenter()
+    maven {
+      name = 'fabricmc.net'
+      url = 'https://maven.fabricmc.net'
+    }
+  }
+  dependencies {
+    classpath "net.fabricmc:fabric-loom:$loomVersion"
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'fabric-loom'
+
+archivesBaseName = 'Harmony'
+group = 'io.github.insomniakitten'
+version = harmonyVersion
+sourceCompatibility = 1.8
+
+minecraft {
+  refmapName = 'mixins.harmony.refmap.json'
+}
+
+dependencies {
+  minecraft "com.mojang:minecraft:$minecraftVersion"
+  mappings "net.fabricmc:yarn:$minecraftVersion.$mappingsVersion"
+  modCompile "net.fabricmc:fabric-loader:$loaderVersion"
+  implementation "com.google.code.findbugs:jsr305:$jsr305Version"
+}
+
+processResources {
+  filter ReplaceTokens, tokens: [
+    version: project.version,
+    refmap : minecraft.refmapName
+  ]
+}

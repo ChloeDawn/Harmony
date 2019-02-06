@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "minVersion": "0.7.11",
+  "compatibilityLevel": "JAVA_8",
+  "target": "@environment(DEFAULT)",
+  "refmap": "@refmap@",
+  "package": "io.github.insomniakitten.harmony.mixin",
+  "client": [
+    "reload.GameOptionsMixin",
+    "reload.LanguageSettingsScreen$class_247Mixin",
+    "reload.RecipeBookGuiMixin",
+    "reload.ResourceManagerMixin",
+    "threading.WorldRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1,
+    "defaultGroup": "default",
+    "maxShiftBy": 0
+  },
+  "overwrites": {
+    "conformVisibility": true,
+    "requireAnnotations": true
+  }
+}
